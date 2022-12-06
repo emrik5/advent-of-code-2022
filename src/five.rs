@@ -1,6 +1,6 @@
 use crate::get_puzzle_input;
 
-pub fn five() {
+pub fn five(part: bool) {
 	let inp = get_puzzle_input("input/five_input.txt");
 	let crates = inp[0].to_owned();
 	let mut columns: [Vec<char>; 9] = Default::default();
@@ -30,13 +30,20 @@ pub fn five() {
 		if line_split.len() < 6 {
 			continue;
 		}
-		let loops: u32 = line_split[1].parse().expect("Invalid instruction: Can't move NaN crates");
+		let loops: usize = line_split[1].parse().expect("Invalid instruction: Can't move NaN crates");
 		let orig: usize = line_split[3].parse().expect("Invalid instruction: Can't move from NaN");
 		let dest: usize = line_split[5].trim().parse().expect("Invalid instruction: Can't move to NaN");
-		for _ in 0..loops {
-			let c = columns[orig - 1].pop().unwrap();
-			columns[dest - 1].push(c);
+		if !part {
+			for _ in 0..loops {
+				let c = columns[orig - 1].pop().unwrap();
+				columns[dest - 1].push(c);
+			}
 		}
+		else {
+			let mut  c = columns[orig - 1].split_off(columns[orig - 1].len() - loops);
+			columns[dest - 1].append(&mut c);
+		}
+		
 	}
 	for v in columns {
 		print!("{}", v[v.len()-1]);

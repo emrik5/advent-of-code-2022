@@ -8,13 +8,27 @@ fn main() -> Result<(), Box<dyn Error>> {
         let mut inp = String::new();
         io::stdin().read_line(&mut inp)?;
         let inp: u32 = inp.trim().parse().unwrap_or(0);
+
+        println!("Enter Part (1 or 2)");
+        let mut part = String::new();
+        io::stdin().read_line(&mut part)?;
+        let part: u32 = part.trim().parse()?;
+        let part: bool = match part {
+            1 => false,
+            2 => true,
+            _ => {
+                println!("Invalid Part, defaults to 1");
+                false
+                }
+        };
+
         match inp {
             0 => println!("No or invalid input"),
             1 => todo!(),
             2 => todo!(),
             3 => todo!(),
             4 => todo!(),
-            5 => five::five(),
+            5 => five::five(part),
             _ => unreachable!()
         }
     Ok(())
