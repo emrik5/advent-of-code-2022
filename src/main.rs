@@ -1,7 +1,6 @@
 use std::error::Error;
 use std::fs;
 use std::io;
-use std::io::Split;
 
 pub mod five;
 fn main() -> Result<(), Box<dyn Error>> {
