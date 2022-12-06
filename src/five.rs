@@ -6,16 +6,20 @@ pub fn five() {
 	let mut rows: [Vec<bool>; 9] = Default::default();
 
 	let instruct = inp[1].to_owned();
+    println!("{:?}", crates);
 	{
-		let mut spaces_count = 0;
+		let mut c_count = 0;
 		for c in crates.chars() {
-			if c == ' ' {
-				spaces_count += 1;
+			if c == '[' {
+				rows[c_count / 4].push(true);
+                c_count += 1;
 			}
-			else if c == '[' {
-				rows[spaces_count % 4].push(true);
-				spaces_count = 0;
-			}
+            else if c == '\n' || c == '\r' {
+                c_count = 0;
+            }
+            else {
+                c_count += 1;
+            }
 		}
 	}
 	println!("{:?}", rows)
