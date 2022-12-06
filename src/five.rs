@@ -26,13 +26,13 @@ pub fn five() {
 	}
 	let instruct: Vec<&str> = instruct.split('\n').collect();
 	for line in instruct {
-		let x: Vec<&str> = line.split(' ').collect();
-		if x.len() < 6 {
+		let line_split: Vec<&str> = line.split(' ').collect();
+		if line_split.len() < 6 {
 			continue;
 		}
-		let loops: u32 = x[1].parse().expect("Invalid instruction: Can't move NaN crates");
-		let orig: usize = x[3].parse().expect("Invalid instruction: Can't move from NaN");
-		let dest: usize = x[5].trim().parse().expect("Invalid instruction: Can't move to NaN");
+		let loops: u32 = line_split[1].parse().expect("Invalid instruction: Can't move NaN crates");
+		let orig: usize = line_split[3].parse().expect("Invalid instruction: Can't move from NaN");
+		let dest: usize = line_split[5].trim().parse().expect("Invalid instruction: Can't move to NaN");
 		for _ in 0..loops {
 			let c = columns[orig - 1].pop().unwrap();
 			columns[dest - 1].push(c);
