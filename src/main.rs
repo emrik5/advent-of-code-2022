@@ -3,6 +3,7 @@ use std::fs;
 use std::io;
 
 pub mod five;
+pub mod seven;
 fn main() -> Result<(), Box<dyn Error>> {
         println!("Enter Day");
         let mut inp = String::new();
@@ -29,6 +30,8 @@ fn main() -> Result<(), Box<dyn Error>> {
             3 => todo!(),
             4 => todo!(),
             5 => five::five(part),
+            6 => todo!(),
+            7 => seven::seven(part),
             _ => unreachable!()
         }
     Ok(())
